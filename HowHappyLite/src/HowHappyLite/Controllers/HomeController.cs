@@ -19,6 +19,8 @@ namespace HowHappyLite.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         public async Task<IActionResult> Result()
         {
@@ -44,19 +46,18 @@ namespace HowHappyLite.Controllers
                 //read response as a json string
                 var responseString = await responseMessage.Content.ReadAsStringAsync();
 
-                //get faces
+                            //get faces
                 var responseArray = JArray.Parse(responseString);
                 foreach (var faceResponse in responseArray)
                 {
-                    //deserialise json to face
                     var face = JsonConvert.DeserializeObject<Face>(faceResponse.ToString());
-
-                    //add face to faces list
                     faces.Add(face);
                 }
+
                 //sort faces by happiness
                 faces = faces.OrderByDescending(o => o.scores.happiness).ToList();
             }
+
 
             return Json(faces);
         }
