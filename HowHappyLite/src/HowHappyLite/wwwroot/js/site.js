@@ -30,6 +30,10 @@ $(document).ready(function () {
         for (var i = 0; i < file_data.length; i++) {
             fd.append("file_" + i, file_data[i]);
         }
+        var other_data = $('form').serializeArray();
+        $.each(other_data, function (key, input) {
+            fd.append(input.name, input.value);
+        });
 
         //get emotion data
         $.ajax({
