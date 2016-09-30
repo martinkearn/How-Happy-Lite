@@ -35,7 +35,7 @@ $(document).ready(function () {
             fd.append(input.name, input.value);
         });
 
-        //get emotion data
+        //get data
         $.ajax({
             type: "POST",
             url: "/home/Result",
